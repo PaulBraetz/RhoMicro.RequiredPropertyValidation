@@ -14,7 +14,7 @@ public static class RequiredPropertyValidation
     /// If any required parameters were found to be <see langword="null"/>, this parameter will contain their names.
     /// </param>
     /// <returns>
-    /// <see langword="true"/> if this instance has required properties that are <see langword="null"/>; otherwise, <see langword="false"/>.
+    /// <see langword="false"/> if this instance has required properties that are <see langword="null"/>; otherwise, <see langword="true"/>.
     /// </returns>
     public static Boolean TryValidate<T>(T instance, out NullPropertyNameSet nullProperties)
          where T : IValidateRequiredProperties<T>
