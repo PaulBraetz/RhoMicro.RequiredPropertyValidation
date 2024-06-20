@@ -1,4 +1,4 @@
-﻿namespace RhoMicro.RequiredMemberValidation;
+﻿namespace RhoMicro.RequiredPropertyValidation;
 
 using System.Collections;
 using System.Collections.Generic;

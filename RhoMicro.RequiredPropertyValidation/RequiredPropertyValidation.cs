@@ -1,7 +1,7 @@
-﻿namespace RhoMicro.RequiredMemberValidation;
+﻿namespace RhoMicro.RequiredPropertyValidation;
 
 /// <summary>
-/// Contains helper methods for the <c>RhoMicro.RequiredMemberValidation</c> namespace for validating required properties.
+/// Contains helper methods for the <c>RhoMicro.RequiredPropertyValidation</c> namespace for validating required properties.
 /// </summary>
 public static class RequiredPropertyValidation
 {

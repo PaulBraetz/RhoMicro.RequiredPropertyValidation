@@ -2,7 +2,7 @@
 using System;
 using System.Reflection;
 
-using RhoMicro.RequiredMemberValidation;
+using RhoMicro.RequiredPropertyValidation;
 
 partial class IndentedStringBuilder
 {

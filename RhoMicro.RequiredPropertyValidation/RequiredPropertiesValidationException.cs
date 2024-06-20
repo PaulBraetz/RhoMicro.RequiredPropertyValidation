@@ -1,4 +1,4 @@
-﻿namespace RhoMicro.RequiredMemberValidation;
+﻿namespace RhoMicro.RequiredPropertyValidation;
 
 /// <summary>
 /// Thrown if an instance of <see cref="IValidateRequiredProperties{T}"/> that contains required members that are <see langword="null"/> is being validated via <see cref="Extensions.ValidateRequiredProperties{T}(T)"/>.

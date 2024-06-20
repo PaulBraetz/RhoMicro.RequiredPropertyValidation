@@ -1,5 +1,5 @@
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-namespace RhoMicro.RequiredMemberValidation;
+namespace RhoMicro.RequiredPropertyValidation;
 
 using System.Diagnostics;
 using System.Text;
@@ -31,7 +31,7 @@ public sealed class Generator : IIncrementalGenerator
         var builder = new IndentedStringBuilder(new()
         {
             AmbientCancellationToken = ct,
-            GeneratorName = "RhoMicro.RequiredMemberValidation.Generator",
+            GeneratorName = "RhoMicro.RequiredPropertyValidation.Generator",
             PrependNullableEnable = true,
             PrependMarkerComment = true,
             //PrependWarningDisablePragma = true

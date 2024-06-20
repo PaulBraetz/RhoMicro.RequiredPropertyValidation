@@ -1,4 +1,4 @@
-﻿namespace RhoMicro.RequiredMemberValidation;
+﻿namespace RhoMicro.RequiredPropertyValidation;
 
 /// <summary>
 /// Represents a type whose required properties may be validated to not be <see langword="null"/>.

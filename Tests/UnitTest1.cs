@@ -1,7 +1,7 @@
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace Tests;
 
-using RhoMicro.RequiredMemberValidation;
+using RhoMicro.RequiredPropertyValidation;
 
 public partial class UnitTest1
 {
