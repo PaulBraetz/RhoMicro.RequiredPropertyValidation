@@ -18,7 +18,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Generator\Generator.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
-		<ProjectReference Include="..\RhoMicro.RequiredPropertyValidation\RhoMicro.RequiredPropertyValidation.csproj" />
+		<ProjectReference Include="..\RhoMicro.RequiredPropertyValidation\Library.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -1,4 +1,3 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
@@ -7,7 +6,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Generator", "Generator\Generator.csproj", "{807F63C1-1D1B-41F9-88BD-838DBA440DB2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RhoMicro.RequiredPropertyValidation", "RhoMicro.RequiredPropertyValidation\RhoMicro.RequiredPropertyValidation.csproj", "{1A50A1C6-6304-4C62-BFD7-5199AD873D39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Library", "Library\Library.csproj", "{1A50A1C6-6304-4C62-BFD7-5199AD873D39}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F9757794-C9A4-4D74-BA8C-ADC72D52D067}"
 	ProjectSection(SolutionItems) = preProject
