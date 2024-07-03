@@ -22,9 +22,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Include="..\RhoMicro.RequiredPropertyValidation\IValidateRequiredProperties.cs" Link="Lib\IValidateRequiredProperties.cs" />
-	  <Compile Include="..\RhoMicro.RequiredPropertyValidation\NullPropertyNameSet.cs" Link="Lib\NullPropertyNameSet.cs" />
-	  <Compile Include="..\RhoMicro.RequiredPropertyValidation\RequiredPropertiesValidationException.cs" Link="Lib\RequiredPropertiesValidationException.cs" />
+	  <Compile Include="..\Library\IValidateRequiredProperties.cs" Link="Lib\IValidateRequiredProperties.cs" />
+	  <Compile Include="..\Library\NullPropertyNameSet.cs" Link="Lib\NullPropertyNameSet.cs" />
+	  <Compile Include="..\Library\RequiredPropertiesValidationException.cs" Link="Lib\RequiredPropertiesValidationException.cs" />
 	</ItemGroup>
 
 	<ItemGroup>
