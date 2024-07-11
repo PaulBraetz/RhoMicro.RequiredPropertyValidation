@@ -23,7 +23,6 @@ public sealed class RequiredPropertyValidator(IRequiredPropertyValidatorSettings
     /// </returns>
     public Boolean TryValidate<T>(T instance)
 #pragma warning disable IDE0075 // Simplify conditional expression
-        where T : notnull
     {
         ArgumentNullException.ThrowIfNull(instance);
 
@@ -38,12 +37,11 @@ public sealed class RequiredPropertyValidator(IRequiredPropertyValidatorSettings
 #pragma warning restore IDE0075 // Simplify conditional expression
     private static Boolean TryValicateCore<T>(IValidateRequiredProperties<T> instance) => instance.IsValid;
     private Boolean TryValidateFallback<T>(T instance)
-        where T : notnull
     {
         Boolean result;
 
 #pragma warning disable IDE0045 // Convert to conditional expression
-        if(_isValidFunctions.GetOrAdd(instance.GetType(), CreateIsValidFunction<T>) is Func<T, Boolean> isValidFunction)
+        if(_isValidFunctions.GetOrAdd(instance!.GetType(), CreateIsValidFunction<T>) is Func<T, Boolean> isValidFunction)
         {
             result = isValidFunction.Invoke(instance);
         } else
@@ -162,10 +160,11 @@ public sealed class RequiredPropertyValidator(IRequiredPropertyValidatorSettings
     /// <param name="instance">The instance to validate.</param>
     /// <exception cref="RequiredPropertiesValidationException">Thrown if the instance passed contains required non-nullable members that are <see langword="null"/>.</exception>
     public void Validate<T>(T instance)
-        where T : notnull
     {
+        ArgumentNullException.ThrowIfNull(instance);
+
         if(!TryValidate(instance, out var nullProperties))
-            throw new RequiredPropertiesValidationException(instance, nullProperties);
+            throw new RequiredPropertiesValidationException(instance!, nullProperties);
     }
 }
 
