@@ -20,12 +20,19 @@ public class ReflectionTests : TestBase
         public required Object? NullableBar { get; init; }
         public Object? NullableNonRequiredBar { get; init; }
     }
+    void AssertEx<T>(T instance, params String[] propertyNames)
+    {
+        var validator = GetValidator(useReflection: true);
+        var ex = Assert.Throws<RequiredPropertiesValidationException>(() => validator.Validate(instance));
+        foreach(var name in propertyNames)
+            Assert.Contains(name, ex.NullProperties);
+        Assert.Equal(propertyNames.Length, ex.NullProperties.Count);
+    }
     [Fact]
     public void StructRootThrowsOnNull()
     {
         var instance = Activator.CreateInstance<StructFoo>();
-        var validator = GetValidator(useReflection: true);
-        _ = Assert.Throws<RequiredPropertiesValidationException>(() => validator.Validate(instance));
+        AssertEx(instance, "Bar");
     }
     [Fact]
     public void StructRootDoesNotThrowOnNonNull()
@@ -44,8 +51,7 @@ public class ReflectionTests : TestBase
     public void RootThrowsOnNull()
     {
         var instance = Activator.CreateInstance<Foo>();
-        var validator = GetValidator(useReflection: true);
-        _ = Assert.Throws<RequiredPropertiesValidationException>(() => validator.Validate(instance));
+        AssertEx(instance, "Bar1");
     }
     [Fact]
     public void RootDoesNotThrowOnNonNull()
@@ -69,8 +75,7 @@ public class ReflectionTests : TestBase
     public void ChildThrowsOnNull()
     {
         var instance = Activator.CreateInstance<Bar>();
-        var validator = GetValidator(useReflection: true);
-        _ = Assert.Throws<RequiredPropertiesValidationException>(() => validator.Validate(instance));
+        AssertEx(instance, "Bar1", "Baz");
     }
     [Fact]
     public void ChildDoesNotThrowOnNonNull()
@@ -96,7 +101,6 @@ public class ReflectionTests : TestBase
     {
         var instance = Activator.CreateInstance<Bar>();
         instance.Baz = new();
-        var validator = GetValidator(useReflection: true);
-        _ = Assert.Throws<RequiredPropertiesValidationException>(() => validator.Validate(instance));
+        AssertEx(instance, "Bar1");
     }
 }
