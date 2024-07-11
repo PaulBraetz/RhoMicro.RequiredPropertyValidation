@@ -2,7 +2,6 @@
 namespace RhoMicro.RequiredPropertyValidation;
 
 using System.Collections.Generic;
-using System.Diagnostics;
 
 using Microsoft.CodeAnalysis;
 
@@ -24,7 +23,9 @@ sealed record TypeModel
 
         var result = new TypeModel()
         {
-            BaseType = t.BaseType?.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat),
+            BaseType = t.BaseType is { SpecialType: SpecialType.None }
+                ? t.BaseType.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)
+                : null,
             Namespace = @namespace,
             RequiredProperties = requiredProperties,
             Signature = signature

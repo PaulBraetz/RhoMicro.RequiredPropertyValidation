@@ -4,7 +4,6 @@ namespace RhoMicro.RequiredPropertyValidation;
 using System.Text;
 
 using Microsoft.CodeAnalysis;
-using Microsoft.CodeAnalysis.VisualBasic.Syntax;
 
 sealed record TypeSignatureModel
 {

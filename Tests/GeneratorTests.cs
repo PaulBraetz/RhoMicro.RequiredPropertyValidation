@@ -3,8 +3,12 @@ namespace Tests;
 
 using RhoMicro.RequiredPropertyValidation;
 
-public partial class UnitTest1
+public partial class GeneratorTests : TestBase
 {
+    readonly partial struct StructFoo
+    {
+        public required Object Bar { get; init; }
+    }
     partial class Bar : Foo
     {
         public required Object Baz { get; set; }
@@ -12,15 +16,36 @@ public partial class UnitTest1
     partial class Foo
     {
         public required Object Bar1 { get; init; }
-        public required Object Bar2 { get; init; }
+        public required Int32? Bar2 { get; init; }
         public required Object? NullableBar { get; init; }
         public Object? NullableNonRequiredBar { get; init; }
+    }
+    [Fact]
+    public void StructRootThrowsOnNull()
+    {
+        var instance = Activator.CreateInstance<StructFoo>();
+        var validator = GetValidator();
+        _ = Assert.Throws<RequiredPropertiesValidationException>(() => validator.Validate(instance));
+    }
+    [Fact]
+    public void StructRootDoesNotThrowOnNonNull()
+    {
+        var instance = new StructFoo() { Bar = new() };
+        var validator = GetValidator();
+        try
+        {
+            validator.Validate(instance);
+        } catch(Exception ex)
+        {
+            Assert.Fail(ex.Message);
+        }
     }
     [Fact]
     public void RootThrowsOnNull()
     {
         var instance = Activator.CreateInstance<Foo>();
-        _ = Assert.Throws<RequiredPropertiesValidationException>(() => RequiredPropertyValidation.Validate(instance));
+        var validator = GetValidator();
+        _ = Assert.Throws<RequiredPropertiesValidationException>(() => validator.Validate(instance));
     }
     [Fact]
     public void RootDoesNotThrowOnNonNull()
@@ -31,9 +56,10 @@ public partial class UnitTest1
             Bar2 = new(),
             NullableBar = null
         };
+        var validator = GetValidator();
         try
         {
-            RequiredPropertyValidation.Validate(instance);
+            validator.Validate(instance);
         } catch(Exception ex)
         {
             Assert.Fail(ex.Message);
@@ -43,7 +69,8 @@ public partial class UnitTest1
     public void ChildThrowsOnNull()
     {
         var instance = Activator.CreateInstance<Bar>();
-        _ = Assert.Throws<RequiredPropertiesValidationException>(() => RequiredPropertyValidation.Validate(instance));
+        var validator = GetValidator();
+        _ = Assert.Throws<RequiredPropertiesValidationException>(() => validator.Validate(instance));
     }
     [Fact]
     public void ChildDoesNotThrowOnNonNull()
@@ -55,9 +82,10 @@ public partial class UnitTest1
             Baz = new(),
             NullableBar = new()
         };
+        var validator = GetValidator();
         try
         {
-            RequiredPropertyValidation.Validate(instance);
+            validator.Validate(instance);
         } catch(Exception ex)
         {
             Assert.Fail(ex.Message);
@@ -68,6 +96,7 @@ public partial class UnitTest1
     {
         var instance = Activator.CreateInstance<Bar>();
         instance.Baz = new();
-        _ = Assert.Throws<RequiredPropertiesValidationException>(() => RequiredPropertyValidation.Validate(instance));
+        var validator = GetValidator();
+        _ = Assert.Throws<RequiredPropertiesValidationException>(() => validator.Validate(instance));
     }
 }

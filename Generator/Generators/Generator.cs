@@ -1,17 +1,12 @@
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 namespace RhoMicro.RequiredPropertyValidation;
 
-using System.Diagnostics;
-using System.Text;
-
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.CSharp;
 using Microsoft.CodeAnalysis.CSharp.Syntax;
 
 using RhoMicro.CodeAnalysis.Library;
 using RhoMicro.CodeAnalysis.Library.Text;
-
-using static RhoMicro.CodeAnalysis.Library.Text.IndentedStringBuilder.Appendables;
 
 [Generator(LanguageNames.CSharp)]
 public sealed class Generator : IIncrementalGenerator

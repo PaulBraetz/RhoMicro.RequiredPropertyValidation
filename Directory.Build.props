@@ -1,6 +1,6 @@
 <Project>
 	<PropertyGroup>
-		<AutoIncrementedAssemblyRevision>12</AutoIncrementedAssemblyRevision>
+		<AutoIncrementedAssemblyRevision>14</AutoIncrementedAssemblyRevision>
 	</PropertyGroup>
 
 	<PropertyGroup Label="VersionInfo">
