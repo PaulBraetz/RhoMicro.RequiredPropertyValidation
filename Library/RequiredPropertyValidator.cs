@@ -61,8 +61,9 @@ public sealed class RequiredPropertyValidator(IRequiredPropertyValidatorSettings
         var equalsMethod = typeof(Object).GetMethod("Equals", BindingFlags.Public | BindingFlags.Static)!;
 
         var nullChecks = type.GetProperties(BindingFlags.Instance)
-            .Where(p => p.GetCustomAttribute<RequiredMemberAttribute>() is not null)
-            .Where(p => nullabilityContext.Create(p).ReadState == NullabilityState.NotNull)
+            .Where(p =>
+                p.GetCustomAttribute<RequiredMemberAttribute>() is not null
+                && nullabilityContext.Create(p).ReadState == NullabilityState.NotNull)
             .Select(p => Expression.Call(null, equalsMethod, Expression.Property(castParamExpr, p), nullConstant))
             .Aggregate<Expression>(Expression.OrElse);
 
