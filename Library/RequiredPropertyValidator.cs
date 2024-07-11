@@ -132,8 +132,9 @@ public sealed class RequiredPropertyValidator(IRequiredPropertyValidatorSettings
         var resultInitializationStmt = (Expression)Expression.Assign(resultExpr, Expression.New(typeof(HashSet<String>)));
         var equalsMethod = typeof(Object).GetMethod("Equals", BindingFlags.Public | BindingFlags.Static)!;
         var bodyStmts = type.GetProperties()
-            .Where(p => p.GetCustomAttribute<RequiredMemberAttribute>() is not null)
-            .Where(p => nullabilityContext.Create(p).ReadState == NullabilityState.NotNull)
+            .Where(p =>
+                p.GetCustomAttribute<RequiredMemberAttribute>() is not null
+                && nullabilityContext.Create(p).ReadState == NullabilityState.NotNull)
             .Select(p =>
             {
                 var propExpr = Expression.Property(castParamExpr, p);
