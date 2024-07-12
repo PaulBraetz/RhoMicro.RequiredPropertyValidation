@@ -53,6 +53,10 @@ public sealed class Generator : IIncrementalGenerator
 
         var source = builder.AppendTypeSignature(m.Signature).Append(" : ").AppendValidationInterface(m.Signature.Name)
             .OpenBracesBlock()
+                .Append("void ").AppendValidationInterface().Append('.').Append(nameof(IValidateRequiredProperties.GetNullPropertyNames)).AppendLine("(global::System.Collections.Generic.HashSet<global::System.String> nullProperties) =>")
+                .Indent()
+                    .Append("((").AppendValidationInterface(m.Signature.FullDisplayName).Append(")this).").Append(nameof(IValidateRequiredProperties<Object>.GetNullPropertyNames)).AppendLine("(nullProperties);")
+                .Detent()
                 .Append("void ").AppendValidationInterface(m.Signature.FullDisplayName).Append('.').Append(nameof(IValidateRequiredProperties<Object>.GetNullPropertyNames)).Append("(global::System.Collections.Generic.HashSet<global::System.String> nullProperties)")
                 .OpenBracesBlock()
                     .Append(b =>
@@ -75,6 +79,10 @@ public sealed class Generator : IIncrementalGenerator
                         }
                     })
                 .CloseBlock()
+                .Append("global::System.Boolean ").AppendValidationInterface().Append('.').Append(nameof(IValidateRequiredProperties.IsValid)).AppendLine(" =>")
+                .Indent()
+                    .Append("((").AppendValidationInterface(m.Signature.FullDisplayName).Append(")this).").Append(nameof(IValidateRequiredProperties<Object>.IsValid)).AppendLine(';')
+                .Detent()
                 .Append("global::System.Boolean ").AppendValidationInterface(m.Signature.FullDisplayName).Append('.').Append(nameof(IValidateRequiredProperties<Object>.IsValid)).AppendLine(" =>")
                 .Indent()
                     .Append(b =>

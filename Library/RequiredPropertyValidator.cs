@@ -26,7 +26,7 @@ public sealed class RequiredPropertyValidator(IRequiredPropertyValidatorSettings
     {
         ArgumentNullException.ThrowIfNull(instance);
 
-        var result = instance is IValidateRequiredProperties<T> validatable
+        var result = instance is IValidateRequiredProperties validatable
             ? TryValicateCore(validatable)
             : settings.UseReflectionFallback
             ? TryValidateFallback(instance)
@@ -35,7 +35,7 @@ public sealed class RequiredPropertyValidator(IRequiredPropertyValidatorSettings
         return result;
     }
 #pragma warning restore IDE0075 // Simplify conditional expression
-    private static Boolean TryValicateCore<T>(IValidateRequiredProperties<T> instance) => instance.IsValid;
+    private static Boolean TryValicateCore(IValidateRequiredProperties instance) => instance.IsValid;
     private Boolean TryValidateFallback<T>(T instance)
     {
         Boolean result;
@@ -90,7 +90,7 @@ public sealed class RequiredPropertyValidator(IRequiredPropertyValidatorSettings
     {
         ArgumentNullException.ThrowIfNull(instance);
 
-        nullProperties = instance is IValidateRequiredProperties<T> validatable
+        nullProperties = instance is IValidateRequiredProperties validatable
             ? GetNullPropertyNamesCore(validatable)
             : settings.UseReflectionFallback
             ? GetNullPropertyNamesFallback(instance)
@@ -99,7 +99,7 @@ public sealed class RequiredPropertyValidator(IRequiredPropertyValidatorSettings
 
         return result;
     }
-    private static NullPropertyNameSet GetNullPropertyNamesCore<T>(IValidateRequiredProperties<T> instance)
+    private static NullPropertyNameSet GetNullPropertyNamesCore(IValidateRequiredProperties instance)
     {
         var nullPropertiesSet = new HashSet<String>(StringComparer.OrdinalIgnoreCase);
         instance.GetNullPropertyNames(nullPropertiesSet);

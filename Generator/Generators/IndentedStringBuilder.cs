@@ -14,6 +14,8 @@ partial class IndentedStringBuilder
         .Append(signature.Name);
     public IndentedStringBuilder AppendValidationInterface(String arg) =>
         Append("global::").Append(typeof(IValidateRequiredProperties<>).Namespace).Append('.').Append(nameof(IValidateRequiredProperties<Object>)).Append('<').Append(arg).Append('>');
+    public IndentedStringBuilder AppendValidationInterface() =>
+        Append("global::").Append(typeof(IValidateRequiredProperties).FullName);
     public IndentedStringBuilder AppendBaseConversion(String baseType, Boolean invert = false)
     {
         AppendCore("this is ");

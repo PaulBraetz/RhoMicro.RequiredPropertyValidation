@@ -78,6 +78,12 @@ public class ReflectionTests : TestBase
         AssertEx(instance, "Bar1", "Baz");
     }
     [Fact]
+    public void ChildAsObjectThrowsOnNull()
+    {
+        var instance = Activator.CreateInstance<Bar>();
+        AssertEx((Object)instance, "Bar1", "Baz");
+    }
+    [Fact]
     public void ChildDoesNotThrowOnNonNull()
     {
         var instance = new Bar()
